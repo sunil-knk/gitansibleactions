@@ -1,15 +1,9 @@
 ---
 - hosts: worker
   become: true
+  become_method: suod
   gather_facts: false
   tasks: 
-    - name: Checking Git version
-      shell: git --version
-      register: mygit
-    - name: Printing Git version
-      debug:
-        msg: "{{ mygit.stdout }}"
-    - name: Read-write git checkout from github
-      ansible.builtin.git:     
-        repo: https://github.com/SAIKATDASGIT/argocd.git
-        dest: /home/$USER/argo
+    - name: Install docker
+      shell: sudo yum install -y yum-utils;sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo;sudo yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin;sudo systemctl start docker;service enable docker
+    
