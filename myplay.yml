@@ -14,7 +14,7 @@
       shell: docker-compose down;docker ps -a
       
     - name: taking the backup of yml's - bridge.yml node.yml docker-compose.yml
-      shell: cp bridge.yml bridge-$(date "+%Y%m%d").yml; cp node.yml node-$(date "+%Y%m%d").yml; cp docker-compose.yml docker-compose-$(date "+%Y%m%d").yml
+      shell: cd /home/sunil/hedera-eth-bridge-validator;DATE=`date "+%Y%m%d"`;cp bridge.yml bridge-$DATE.yml; cp node.yml node-$DATE.yml; cp docker-compose.yml docker-compose-$DATE.yml
       
     - name: git clone repo
       shell: cd hedera-eth-bridge-validator;docker-compose up -d
