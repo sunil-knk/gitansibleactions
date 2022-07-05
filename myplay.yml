@@ -28,8 +28,8 @@
     - name: changing and replace the image string and image version  
       ansible.builtin.replace:
         path: /etc/ssh/sshd_config
-        regexp: '^image: gcr.io/hedera-eth-bridge-test/hedera-eth-bridge-validator:${TAG}$'
-        replace: 'image: gcr.io/hedera-eth-bridge-test/hedera-eth-bridge-validator:v0.0.4-rc-3'
+        regexp: '${TAG}$'
+        replace: 'v0.0.4-rc-3'
       
     - name: git clone repo
       shell: cd hedera-eth-bridge-validator;docker-compose up -d
