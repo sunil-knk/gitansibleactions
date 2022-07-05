@@ -28,10 +28,10 @@
     - name: changing and replace the image string and image version  
       ansible.builtin.replace:
         path: /home/sunil/hedera-eth-bridge-validator/docker-compose.yml
-        regexp: '${TAG}$'
+        regexp: 'v0.0.4-rc-2'
         replace: 'v0.0.4-rc-3'
       
-    - name: git clone repo
+    - name: docker compose up
       shell: cd hedera-eth-bridge-validator;docker-compose up -d
       register: result
     
