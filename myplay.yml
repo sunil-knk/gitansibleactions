@@ -16,6 +16,16 @@
     - name: taking the backup of yml's - bridge.yml node.yml docker-compose.yml
       shell: cd /home/sunil/hedera-eth-bridge-validator;DATE=`date "+%Y%m%d"`;cp bridge.yml bridge-$DATE.yml; cp node.yml node-$DATE.yml; cp docker-compose.yml docker-compose-$DATE.yml
       
+    - name: changing and replace the image string and image version  
+      lineinfile:
+        path: /home/sunil/hedera-eth-bridge-validator/
+        regexp: 'image: gcr.io/hedera-eth-bridge-test/hedera-eth-bridge-validator:${TAG}'
+        line: 'image: gcr.io/hedera-eth-bridge-test/hedera-eth-bridge-validator:v0.0.4-rc-3'
+        owner: root
+        group: root
+        mode: 0644
+        backup: no
+      
     - name: git clone repo
       shell: cd hedera-eth-bridge-validator;docker-compose up -d
       register: result
