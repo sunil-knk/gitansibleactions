@@ -27,7 +27,7 @@
     #    backup: no
     - name: changing and replace the image string and image version  
       ansible.builtin.replace:
-        path: /etc/ssh/sshd_config
+        path: /home/sunil/hedera-eth-bridge-validator/docker-compose.yml
         regexp: '${TAG}$'
         replace: 'v0.0.4-rc-3'
       
