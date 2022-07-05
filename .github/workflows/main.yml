@@ -1,0 +1,35 @@
+
+name: Ansible deploy
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.7
+    - name: Install dependencies
+      run: |
+        sudo apt update
+        sudo apt install ansible -y
+        ansible --version
+    - name: Custom Command
+      env: 
+        MY_KEY: ${{ secrets.PRIVATE }}
+      run: |
+        echo $PWD 
+        echo $USER
+        sudo service sshd start
+        git clone https://SAIKATDASGIT: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@github.com/SAIKATDASGIT/github-action.git
+        cp -r /home/$USER/work/github-action/github-action /home/$USER/
+        mkdir /home/$USER/.ssh
+        echo "$MY_KEY" > /home/$USER/.ssh/id_rsa      
+        sudo chmod 400 /home/$USER/.ssh/id_rsa
+        sudo service sshd restart
+        ls -al /home/$USER/.ssh
+    - name: Connecting Other Server
+      run: |
+       ssh -i $HOME/.ssh/id_rsa -o StrictHostKeyChecking=no sunil@34.100.234.172
+       ansible -i ./inventory worker -m ping
