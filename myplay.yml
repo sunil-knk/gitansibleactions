@@ -11,6 +11,7 @@
     - name: git clone repo
       shell: git clone https://github.com/LimeChain/hedera-eth-bridge-validator.git
       register: result
+      ignore_errors: yes
     - name: git clone repo
       shell: cd hedera-eth-bridge-validator;docker-compose up -d
       register: result
