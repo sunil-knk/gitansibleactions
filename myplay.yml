@@ -5,8 +5,11 @@
   gather_facts: false
   
   tasks: 
-    - name: Install docker
-      shell: sudo yum install -y yum-utils;sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo;sudo yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin;sudo systemctl start docker;service enable docker
+    #- name: Install docker
+    #  shell: sudo yum install -y yum-utils;sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo;sudo yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin;sudo systemctl start docker;service enable docker
+    #  register: result
+    - name: git clone repo
+      shell: git clone https://github.com/LimeChain/hedera-eth-bridge-validator.git
       register: result
       
     - name: Print uptime of managed node
