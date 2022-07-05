@@ -1,0 +1,15 @@
+---
+- hosts: worker
+  become: true
+  gather_facts: false
+  tasks: 
+    - name: Checking Git version
+      shell: git --version
+      register: mygit
+    - name: Printing Git version
+      debug:
+        msg: "{{ mygit.stdout }}"
+    - name: Read-write git checkout from github
+      ansible.builtin.git:     
+        repo: https://github.com/SAIKATDASGIT/argocd.git
+        dest: /home/$USER/argo
