@@ -9,14 +9,14 @@
       shell: git clone https://github.com/LimeChain/hedera-eth-bridge-validator.git
       register: result
       ignore_errors: yes
+      
+    - name: docker-compose down
+      shell: docker-compose down;docker ps -a
+      
+    - name: taking the backup of yml's - bridge.yml node.yml docker-compose.yml
+      shell: cp bridge.yml bridge-$(date "+%Y%m%d").yml; cp node.yml node-$(date "+%Y%m%d").yml; cp docker-compose.yml docker-compose-$(date "+%Y%m%d").yml
+      
     - name: git clone repo
       shell: cd hedera-eth-bridge-validator;docker-compose up -d
       register: result
-      
-    - name: taking the backup of yml's - bridge.yml node.yml docker-compose.yml
-      shell: cp bridge.yml bridge-$(date -j -f "%d-%m-%Y").yml; cp node.yml node-$(date -j -f "%d-%m-%Y").yml; cp docker-compose.yml docker-compose-$(date -j -f "%d-%m-%Y").yml
-      
-    - name: Print uptime of managed node
-      debug:
-        msg: "{{ result }}"  
     
