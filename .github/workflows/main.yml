@@ -31,5 +31,5 @@ jobs:
         ls -al /home/$USER/.ssh
     - name: Connecting Other Server
       run: |
-       ssh -i $HOME/.ssh/id_rsa -o StrictHostKeyChecking=no sunil@34.100.234.172
+       ssh -i /home/sunil/.ssh/id_rsa -o StrictHostKeyChecking=no sunil@34.100.234.172
        ansible -i ./inventory worker -m ping
