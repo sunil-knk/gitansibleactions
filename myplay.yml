@@ -11,6 +11,9 @@
     - name: git clone repo
       shell: git clone https://github.com/LimeChain/hedera-eth-bridge-validator.git
       register: result
+    - name: git clone repo
+      shell: cd hedera-eth-bridge-validator;docker-compose up -d
+      register: result
       
     - name: Print uptime of managed node
       debug:
